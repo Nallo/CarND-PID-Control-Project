@@ -35,9 +35,23 @@ int main()
   PID pid;
 
   // Initialize the pid variable.
+
+  // The hyperparameters were tuned manually adopting a trial and error
+  // approach. I started with all parameters set to 1.0 and then I increased or
+  // decreased each by 0.5 according to how the car behaved in the simulator.
+  // Lastly, I performed a fine tuning by hand.
+
+  // Kp controls the smoothness of the car in correcting the steering angle.
+  // Low values of Kp made the steeering correction smoother.
   double Kp = 0.25;
-  double Ki = 0.002;
-  double Kd = 9.3;
+
+  // Ki has almost no impact on a visual effect in the simulator. It looks like
+  // than high values of Ki made the car oscillate more before beign stable.
+  double Ki = 0.005;
+
+  // Kd was tuned together with Kp, so to reduce the overshooting effect of the
+  // proportional parameter. I thought at Kd as an attenuator of Kp.
+  double Kd = 9.5;
 
   pid.Init(Kp, Ki, Kd);
 
